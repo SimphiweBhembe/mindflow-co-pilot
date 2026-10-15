@@ -80,7 +80,7 @@ function Planner() {
       const n = [...t];
       const j = i + d;
       if (j < 0 || j >= n.length) return t;
-      [n[i], n[j]] = [n[j], n[i]];
+      const a = n[i]!; n[i] = n[j]!; n[j] = a;
       return n;
     });
   const done = tasks.filter((t) => t.done).length;

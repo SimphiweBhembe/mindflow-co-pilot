@@ -82,18 +82,18 @@ function extractActions(t: string) {
   for (const l of lines) {
     const m = l.match(/^(\w+)[^:]*:\s*(.*)$/);
     if (!m) continue;
-    const [, who, said] = m;
+    const who = m[1] ?? ""; const said = m[2] ?? "";
     const will = said.match(/I'?ll ([^.]+?)(?: by ([^.,]+))?[.,]/i) || said.match(/I will ([^.]+?)(?: by ([^.,]+))?[.,]/i);
     if (will) {
       items.push({
-        task: cap(will[1].replace(/ and get .*/, "")),
+        task: cap((will[1] ?? "").replace(/ and get .*/, "")),
         owner: who,
         deadline: will[2]?.trim() ?? "TBD ⚠️",
-        priority: /launch|api|export/i.test(will[1]) ? "High" : "Medium",
+        priority: /launch|api|export/i.test(will[1] ?? "") ? "High" : "Medium",
       });
     }
     const someone = said.match(/someone should (?:also )?([^.]+)/i);
-    if (someone) items.push({ task: cap(someone[1]), owner: "Unassigned ⚠️", deadline: "TBD ⚠️", priority: "Low" });
+    if (someone) items.push({ task: cap(someone[1] ?? ""), owner: "Unassigned ⚠️", deadline: "TBD ⚠️", priority: "Low" });
   }
   if (!items.length) items.push({ task: "Review transcript and assign follow-ups", owner: "Unassigned ⚠️", deadline: "TBD ⚠️", priority: "Medium" });
   return items;
@@ -141,7 +141,7 @@ ${questions.join("\n") || "- None identified"}
 }
 
 const toMin = (s: string) => {
-  const [h, m] = s.split(":").map(Number);
+  const [h = 0, m] = s.split(":").map(Number);
   return h * 60 + (m || 0);
 };
 const fmt = (n: number) => `${String(Math.floor(n / 60)).padStart(2, "0")}:${String(n % 60).padStart(2, "0")}`;

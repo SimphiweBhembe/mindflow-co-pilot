@@ -21,7 +21,7 @@ export const Route = createFileRoute("/settings")({
   component: Page,
 });
 
-const NOTES = [
+const NOTES: [string, string][] = [
   ["Prompt architecture", "Each tool uses a fixed SYSTEM prompt (role + task + rules) combined with a dynamically built USER message containing your input and selected options. This separation keeps behaviour consistent while adapting to your content."],
   ["Role framing", "Each prompt assigns a persona — neutral meeting analyst, productivity coach, workplace assistant — which anchors tone, vocabulary and priorities."],
   ["Output constraints", "Summaries follow a strict 4-part schema; plans must respect working hours, buffers and a top-3 priority rule. Structured outputs make results predictable and easy to review."],
@@ -59,7 +59,7 @@ function Page() {
                 <AccordionContent className="text-sm text-muted-foreground">{b}</AccordionContent>
               </AccordionItem>
             ))}
-            {[["Summarizer system prompt", SUMMARY_SYSTEM], ["Planner system prompt", PLANNER_SYSTEM], ["Chat system prompt", CHAT_SYSTEM]].map(([t, p]) => (
+            {([["Summarizer system prompt", SUMMARY_SYSTEM], ["Planner system prompt", PLANNER_SYSTEM], ["Chat system prompt", CHAT_SYSTEM]] as [string, string][]).map(([t, p]) => (
               <AccordionItem key={t} value={t}>
                 <AccordionTrigger className="text-sm">{t}</AccordionTrigger>
                 <AccordionContent><pre className="whitespace-pre-wrap rounded-xl bg-muted p-3 font-mono text-[11px]">{p}</pre></AccordionContent>
