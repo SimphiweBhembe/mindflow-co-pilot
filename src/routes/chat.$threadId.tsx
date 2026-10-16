@@ -31,8 +31,12 @@ function ChatWindow({ threadId }: { threadId: string }) {
   const taRef = useRef<HTMLTextAreaElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => taRef.current?.focus(), [busy]);
-  useEffect(() => endRef.current?.scrollIntoView({ behavior: "smooth" }), [thread?.messages.length, draft]);
+  useEffect(() => {
+    taRef.current?.focus();
+  }, [busy]);
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [thread?.messages.length, draft]);
 
   const patch = (fn: (t: ChatThread) => ChatThread) => setThreads((all) => all.map((t) => (t.id === threadId ? fn(t) : t)));
 
