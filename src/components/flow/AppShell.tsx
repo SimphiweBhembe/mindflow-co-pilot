@@ -180,20 +180,22 @@ function Onboarding() {
   const [agree, setAgree] = useState(false);
   return (
     <Dialog open={ready && !done} onOpenChange={() => {}}>
-      <DialogContent className="sm:max-w-lg [&>button]:hidden">
-        <div className="bg-hero mb-2 flex h-11 w-11 items-center justify-center rounded-xl text-primary-foreground">
+      <DialogContent className="max-h-[90vh] gap-3 overflow-y-auto sm:max-w-lg [&>button]:hidden">
+        <div className="bg-hero flex h-10 w-10 items-center justify-center rounded-xl text-primary-foreground">
           <ShieldCheck className="h-5 w-5" />
         </div>
-        <DialogTitle className="text-xl">Welcome to FlowMind AI</DialogTitle>
-        <DialogDescription>Before you start, please review how to use AI responsibly at work.</DialogDescription>
-        <ul className="space-y-2 text-sm">
+        <div>
+          <DialogTitle className="text-xl">Welcome to FlowMind AI</DialogTitle>
+          <DialogDescription>Before you start, please review how to use AI responsibly at work.</DialogDescription>
+        </div>
+        <ul className="space-y-1.5 text-sm">
           {[
             "AI output can be wrong, incomplete or biased — always review before sharing or acting.",
             "Don't paste confidential, personal or regulated data you aren't allowed to share.",
             "You stay accountable: every output is editable so a human approves the final version.",
             "Your work is stored only in this browser. Clear it any time in Settings.",
           ].map((t) => (
-            <li key={t} className="flex gap-2 rounded-lg bg-muted p-2.5">
+            <li key={t} className="flex gap-2 rounded-lg bg-muted p-2">
               <span className="text-primary">•</span>
               {t}
             </li>
