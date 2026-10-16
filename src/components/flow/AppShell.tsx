@@ -180,7 +180,7 @@ function Onboarding() {
   const [agree, setAgree] = useState(false);
   return (
     <Dialog open={ready && !done} onOpenChange={() => {}}>
-      <DialogContent className="max-h-[90vh] gap-3 overflow-y-auto sm:max-w-lg [&>button]:hidden">
+      <DialogContent className="max-h-[90vh] gap-3 overflow-y-auto sm:max-w-lg [&>button:has(.sr-only)]:hidden">
         <div className="bg-hero flex h-10 w-10 items-center justify-center rounded-xl text-primary-foreground">
           <ShieldCheck className="h-5 w-5" />
         </div>
