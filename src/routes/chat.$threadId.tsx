@@ -8,7 +8,7 @@ import { Markdown } from "@/components/flow/Markdown";
 import { Disclaimer, PromptDrawer } from "@/components/flow/OutputPanel";
 import { buildChatPrompt, mockChat, sleep, streamText } from "@/lib/ai";
 import { addHistory, bumpStat, KEYS, uid, useStore, type ChatThread } from "@/lib/store";
-import { newThread } from "./chat.index";
+import { newThread } from "@/lib/chat";
 
 export const Route = createFileRoute("/chat/$threadId")({
   component: ChatPage,
